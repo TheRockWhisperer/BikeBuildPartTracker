@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Client Testing (module)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "src.Client_Testing.2_clients_testing",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+from DTOs.PriceDTO import PriceDTO
+from Clients.ShopifyWebClient import ShopifyWebClient
+from Skus.CondorSku import CondorProductSkus
+from Skus.WhiteIndustriesSku import WhiteIndustriesProductSkus
+from Clients.WhiteIndustriesWebClient import WhiteIndustriesWebClient
+from Skus.VittoriaSku import VittoriaProductSkus
+from Skus.FullSpeedAheadSku import FullSpeedAheadSkus
+from Clients.SupacazWebClient import SupacazWebClient
+from Skus.SupacazSku import SupacazSkus
+from Clients.MerlinCycles import MerlinCyclesWebClient, MerlinCyclesSkus
+from Clients.RitcheyLogicWebClient import RitcheyWebClient
+from Skus.RitcheyLogicSku import RitcheyLogicSkus
+from Clients.SelleItaliaWebClient import SelleItaliaWebClient
+from Skus.SelleItaliaSku import SelleItaliaProductSkus
+from Clients.PaulComponentsWebClient import PaulCompWebClient
+from Skus.PaulComponentsSku import PaulCompProductSkus
+
+condor_web_client = ShopifyWebClient()
+dto = condor_web_client.fetch_price_dto(CondorProductSkus.BLUE_CONDOR_FRAME)
+print(dto)
