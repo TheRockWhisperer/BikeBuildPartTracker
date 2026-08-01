@@ -16,5 +16,5 @@ jobs:
       - run: pip install -r requirements.txt
       - run: playwright install --with-deps chromium
       - run: python daily_scrape.py
-        env:
+        # env:
           # DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
