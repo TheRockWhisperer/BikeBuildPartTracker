@@ -1,4 +1,5 @@
 import logging
+import sys
 
 from DTOs.PriceDTO import PriceDTO
 from Clients.ShopifyWebClient import ShopifyWebClient
@@ -19,8 +20,11 @@ from Skus.RitcheyLogicSku import RitcheyLogicSkus
 from Skus.SelleItaliaSku import SelleItaliaProductSkus
 from Skus.PaulComponentsSku import PaulCompProductSkus
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 # (client, sku, label) — label is just for logging
 SCRAPE_JOBS = [
@@ -36,7 +40,7 @@ SCRAPE_JOBS = [
 ]
 
 
-def handler(event, context):
+def run_scrape() -> dict:
     dto_list: list[PriceDTO] = []
     errors: list[dict] = []
 
@@ -53,8 +57,26 @@ def handler(event, context):
     # insert_records(dto_list)
 
     return {
-        "statusCode": 200 if not errors else 207,  # 207 = partial success
         "fetched": len(dto_list),
         "failed": len(errors),
         "errors": errors,
     }
+
+
+if __name__ == "__main__":
+    result = run_scrape()
+
+    logger.info(f"Run complete: {result['fetched']} fetched, {result['failed']} failed")
+
+    if result["failed"] > 0:
+        for err in result["errors"]:
+            logger.error(f"  {err['source']}: {err['error']}")
+
+        # Fail the whole job only if EVERY scraper failed (total outage).
+        # Partial failures still exit 0 so the DB insert of successful
+        # results isn't treated as a broken workflow — but the errors
+        # are logged above so you'll see them in the Actions run.
+        if result["fetched"] == 0:
+            sys.exit(1)
+
+    sys.exit(0)
