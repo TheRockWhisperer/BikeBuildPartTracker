@@ -36,7 +36,7 @@ class PaulCompWebClient(HtmlWebClient):
             msrp_price, sale_price = sale_price_val, None
 
         return {
-            "product_id": variant.get("sku", str(paul_comp_sku.variant_id)),
+            "product_id": paul_comp_sku.product_name,
             "date": date.today(),
             "msrp_price": msrp_price,
             "sale_price": sale_price,
