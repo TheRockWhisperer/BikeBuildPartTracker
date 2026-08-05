@@ -20,7 +20,8 @@ from Skus.RitcheyLogicSku import RitcheyLogicSkus
 from Skus.SelleItaliaSku import SelleItaliaProductSkus
 from Skus.PaulComponentsSku import PaulCompProductSkus
 
-import supabase
+from supabase import Client, create_client
+import os
 
 logging.basicConfig(
     level=logging.INFO,
@@ -35,7 +36,7 @@ SCRAPE_JOBS = [
     (ShopifyWebClient(), VittoriaProductSkus.CORSA_PRO_TUBE_TYPE_32C_PARA, "Vittoria"),
     (ShopifyWebClient(), FullSpeedAheadSkus.ENERGY_STEM, "Full Speed Ahead"),
     (SupacazWebClient(), SupacazSkus.SSK_STAR_FADE_RED, "Supacaz"),
-    (MerlinCyclesWebClient(), MerlinCyclesSkus.SHIMANO_105_MECHANICAL_GROUPSET.value, "Merlin Cycles"),
+    (MerlinCyclesWebClient(), MerlinCyclesSkus.SHIMANO_105_MECHANICAL_GROUPSET, "Merlin Cycles"),
     (RitcheyWebClient(), RitcheyLogicSkus.COMP_ZERO_SEATPOST, "Ritchey Logic"),
     (SelleItaliaWebClient(), SelleItaliaProductSkus.SLR_BOOST_ENDURANCE_L3_BLACK, "Selle Italia"),
     (PaulCompWebClient(), PaulCompProductSkus.BAR_END_PLUGS_BLACK, "Paul Components"),
@@ -64,8 +65,15 @@ def run_scrape() -> dict:
             logger.error(f"Failed to fetch {label}: {e}")
             errors.append({"source": label, "error": str(e)})
 
-    # TODO: insert dto_list into your database here
-    # insert_records(dto_list)
+
+    url = os.environ["SUPABASE_URL"]
+    key = os.environ["SUPABASE_PUBLISHABLE_KEY"]
+    supabase: Client = create_client(url, key)
+
+    supabase.auth.sign_in_with_password({
+        "email": os.environ["SCRAPER_EMAIL"],
+        "password": os.environ["SCRAPER_PASSWORD"],
+    })
 
     supabase.table("bicycle_product_daily_price").insert(dto_list).execute()
 
