@@ -21,3 +21,4 @@ jobs:
           SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
           SCRAPER_EMAIL: ${{ secrets.SCRAPER_EMAIL }}
           SCRAPER_PASSWORD: ${{ secrets.SCRAPER_PASSWORD }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
