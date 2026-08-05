@@ -16,5 +16,8 @@ jobs:
       - run: pip install -r requirements.txt
       - run: playwright install --with-deps chromium
       - run: python daily_scrape.py
-        # env:
-          # DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          SCRAPER_EMAIL: ${{ secrets.SCRAPER_EMAIL }}
+          SCRAPER_PASSWORD: ${{ secrets.SCRAPER_PASSWORD }}
