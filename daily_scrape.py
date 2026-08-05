@@ -15,10 +15,12 @@ from Skus.WhiteIndustriesSku import WhiteIndustriesProductSkus
 from Skus.VittoriaSku import VittoriaProductSkus
 from Skus.FullSpeedAheadSku import FullSpeedAheadSkus
 from Skus.SupacazSku import SupacazSkus
-from Clients.MerlinCycles import MerlinCyclesSkus
+from Skus.MerlinCyclesSku import MerlinCyclesSkus
 from Skus.RitcheyLogicSku import RitcheyLogicSkus
 from Skus.SelleItaliaSku import SelleItaliaProductSkus
 from Skus.PaulComponentsSku import PaulCompProductSkus
+
+import supabase
 
 logging.basicConfig(
     level=logging.INFO,
@@ -47,7 +49,16 @@ def run_scrape() -> dict:
     for client, sku, label in SCRAPE_JOBS:
         try:
             dto = client.fetch_price_dto(sku)
-            dto_list.append(dto)
+            price_model: dict = {
+                "date": dto.date,
+                "product_type": sku.product_type,
+                "product_brand": sku.product_brand,
+                "product_name": dto.product_id,
+                "variant": sku.variant_id,
+                "msrp_price": dto.msrp_price,
+                "sale_price": dto.sale_price
+            }
+            dto_list.append(price_model)
             logger.info(f"Fetched {label}: {dto}")
         except Exception as e:
             logger.error(f"Failed to fetch {label}: {e}")
@@ -55,6 +66,8 @@ def run_scrape() -> dict:
 
     # TODO: insert dto_list into your database here
     # insert_records(dto_list)
+
+    supabase.table("bicycle_product_daily_price").insert(dto_list).execute()
 
     return {
         "fetched": len(dto_list),
