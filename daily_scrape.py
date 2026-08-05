@@ -65,15 +65,12 @@ def run_scrape() -> dict:
             logger.error(f"Failed to fetch {label}: {e}")
             errors.append({"source": label, "error": str(e)})
 
-
+    url = "https://mutrifzqzvsxxhgcyxrl.supabase.co"
+    key = "sb_publishable_52B0sXyVjxvrPAw7OMkzoQ_ANruGm9E"
+    
     url = os.environ["SUPABASE_URL"]
-    key = os.environ["SUPABASE_PUBLISHABLE_KEY"]
+    key = os.environ["SUPABASE_SERVICE_KEY"]
     supabase: Client = create_client(url, key)
-
-    supabase.auth.sign_in_with_password({
-        "email": os.environ["SCRAPER_EMAIL"],
-        "password": os.environ["SCRAPER_PASSWORD"],
-    })
 
     supabase.table("bicycle_product_daily_price").insert(dto_list).execute()
 
