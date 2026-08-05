@@ -24,7 +24,7 @@ class PaulCompWebClient(HtmlWebClient):
 
     def _parse(self, variations: list[dict], paul_comp_sku: PaulCompSku) -> dict:
         variant = next(
-            v for v in variations if v["variant_id"] == paul_comp_sku.variant_id
+            v for v in variations if v["variation_id"] == paul_comp_sku.variant_id
         )
 
         sale_price_val = float(variant["display_price"])

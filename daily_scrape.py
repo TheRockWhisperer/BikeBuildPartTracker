@@ -51,7 +51,7 @@ def run_scrape() -> dict:
         try:
             dto = client.fetch_price_dto(sku)
             price_model: dict = {
-                "date": dto.date,
+                "date": dto.date.isoformat(),
                 "product_type": sku.product_type,
                 "product_brand": sku.product_brand,
                 "product_name": dto.product_id,
