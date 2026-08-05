@@ -31,7 +31,6 @@ class SelleItaliaWebClient(HtmlWebClient):
 
         return {
             "product_id": selle_italia_sku.product_slug,
-            "name": selle_italia_sku.product_name,
             "date": date.today(),
             "msrp_price": msrp_price,
             "sale_price": sale_price,

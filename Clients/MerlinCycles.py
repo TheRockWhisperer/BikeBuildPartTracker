@@ -7,26 +7,7 @@ from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 
 from .BaseWebClient import BaseWebClient, PriceDTO
-
-
-@dataclass(frozen=True)
-class MerlinCyclesProductSku:
-    """A single sellable product from Full Speed Ahead."""
-    product_slug: str
-
-    @property
-    def url(self) -> str:
-        return f"https://www.merlincycles.com/en-us/{self.product_slug}.html"
-
-    @property
-    def product_name(self) -> str:
-        return self.product_slug.replace('-', ' ')
-
-
-class MerlinCyclesSkus(Enum):
-    SHIMANO_105_MECHANICAL_GROUPSET = MerlinCyclesProductSku("shimano-105-r7120-disc-groupset-12-speed-298406")
-    SHIMANO_105_DI2_GROUPSET = MerlinCyclesProductSku("shimano-105-r7170-di2-disc-groupset-12-speed-271682")
-    SHIMANO_ULTEGRA_DI2_GROUPSET = MerlinCyclesProductSku("shimano-ultegra-r8170-di2-disc-groupset-12-speed-252965")
+from Skus.MerlinCyclesSku import MerlinCyclesProductSku
 
 
 def _fetch_merlin_html(url: str, timeout_ms: int = 10000) -> str:
@@ -68,7 +49,6 @@ class MerlinCyclesWebClient(BaseWebClient):
         msrp_price, sale_price = self._parse_html_price_prices(html_soup)
         return {
             "product_id": merlin_product_sku.product_slug,
-            "name": merlin_product_sku.product_name,
             "date": date.today(),
             "msrp_price": msrp_price,
             "sale_price": sale_price,

@@ -2,9 +2,11 @@ from enum import Enum
 
 class PaulCompSku:
     """A single sellable variant on paulcomp.com."""
-    def __init__(self, product_slug: str, variation_id: int):
+    def __init__(self, product_slug: str, variant_id: int):
+        self.product_type = "bar_end_plugs"
+        self.product_brand = "paul_components"
         self.product_slug = product_slug
-        self.variation_id = variation_id
+        self.variant_id = variant_id
 
     @property
     def url(self) -> str:

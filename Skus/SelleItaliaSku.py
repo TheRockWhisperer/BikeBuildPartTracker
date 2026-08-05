@@ -6,7 +6,10 @@ class SelleItaliaSku:
     """A single sellable variant on selleitalia.com."""
 
     def __init__(self, product_slug: str, option_values: dict):
+        self.product_type = "saddle"
+        self.product_brand = "selle_italia"
         self.product_slug = product_slug
+        self.variant_id = None
         self.option_values = option_values
 
     @property

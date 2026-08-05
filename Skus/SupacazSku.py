@@ -6,7 +6,10 @@ class SupacazProductSku(BaseSku):
     """A single sellable product on supacaz.com."""
 
     def __init__(self, product_slug: str) -> None:
+        self.product_type = "bar_tape"
+        self.product_brand = "supacaz"
         self.product_slug = product_slug
+        self.variant_id = None
 
     @property
     def url(self) -> str:

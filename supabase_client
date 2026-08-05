@@ -1,0 +1,88 @@
+"""
+Helper module for creating Supabase client sessions.
+
+Usage:
+    from supabase_client import get_supabase_client, get_supabase_admin_client
+
+    supabase = get_supabase_client()
+    response = supabase.table("your_table").select("*").execute()
+"""
+
+import os
+from functools import lru_cache
+
+from dotenv import load_dotenv
+from supabase import create_client, Client
+
+load_dotenv()
+
+
+def _get_env(key: str) -> str:
+    """Fetch a required environment variable, raising a clear error if missing."""
+    value = os.getenv(key)
+    if not value:
+        raise EnvironmentError(
+            f"Missing required environment variable: '{key}'. "
+            f"Make sure it's set in your .env file."
+        )
+    return value
+
+
+@lru_cache(maxsize=1)
+def get_supabase_client() -> Client:
+    """
+    Return a cached Supabase client using the anon/public key.
+
+    Respects Row Level Security (RLS) policies. Use this for
+    any client-facing or user-scoped operations.
+
+    Requires SUPABASE_URL and SUPABASE_KEY in your .env file.
+    """
+    url = _get_env("SUPABASE_URL")
+    key = _get_env("SUPABASE_KEY")
+    return create_client(url, key)
+
+
+@lru_cache(maxsize=1)
+def get_supabase_admin_client() -> Client:
+    """
+    Return a cached Supabase client using the service_role key.
+
+    Bypasses Row Level Security (RLS). Use only in trusted,
+    server-side contexts (e.g. admin scripts, migrations, background jobs).
+    Never expose this client or its key in client-facing code.
+
+    Requires SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in your .env file.
+    """
+    url = _get_env("SUPABASE_URL")
+    service_key = _get_env("SUPABASE_SERVICE_ROLE_KEY")
+    return create_client(url, service_key)
+
+
+def get_supabase_client_for_user(access_token: str, refresh_token: str = "") -> Client:
+    """
+    Return a fresh Supabase client authenticated as a specific user.
+
+    Useful when you need RLS policies to apply based on a particular
+    user's session (e.g. in a web backend handling per-request auth),
+    rather than the anon key's default (unauthenticated) context.
+
+    Args:
+        access_token: The user's JWT access token.
+        refresh_token: The user's refresh token (optional, but recommended
+                        so the client can refresh an expired session).
+    """
+    url = _get_env("SUPABASE_URL")
+    key = _get_env("SUPABASE_KEY")
+    client = create_client(url, key)
+    client.auth.set_session(access_token, refresh_token)
+    return client
+
+
+if __name__ == "__main__":
+    # Quick sanity check when running this file directly
+    try:
+        client = get_supabase_client()
+        print("✅ Supabase client created successfully.")
+    except EnvironmentError as e:
+        print(f"❌ {e}")

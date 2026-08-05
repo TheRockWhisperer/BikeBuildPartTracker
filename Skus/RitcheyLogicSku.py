@@ -9,6 +9,8 @@ class RitcheySku(BaseSku):
     since Ritchey doesn't use one consistent prefix across product types.
     """
     def __init__(self, product_slug: str, variant_id: int) -> None:
+            self.product_type = "seatpost"
+            self.product_brand = "ritchey_logic"
             self.product_slug = product_slug
             self.variant_id = variant_id
 

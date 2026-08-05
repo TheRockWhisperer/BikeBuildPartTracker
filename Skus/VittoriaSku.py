@@ -5,6 +5,8 @@ from .BaseSku import BaseSku
 class VittoriaSku(BaseSku):
     """A single sellable variant on vittoria.com."""
     def __init__(self, product_slug: str, variant_id: int) -> None:
+        self.product_type = "tire"
+        self.product_brand = "vittoria"
         self.product_slug = product_slug
         self.variant_id = variant_id
 

@@ -16,7 +16,6 @@ class SupacazWebClient(HtmlWebClient):
         msrp_price, sale_price = self._parse_html_price_prices(html_soup)
         return {
             "product_id": sku.product_slug,
-            "name": sku.product_name,
             "date": date.today(),
             "msrp_price": msrp_price,
             "sale_price": sale_price,

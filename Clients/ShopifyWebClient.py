@@ -23,7 +23,6 @@ class ShopifyWebClient(HtmlWebClient):
             
             return {
                 "product_id": product_sku.product_slug,
-                "name": product_sku.product_name,
                 "date": date.today(),
                 "msrp_price": msrp_price,
                 "sale_price": sale_price,

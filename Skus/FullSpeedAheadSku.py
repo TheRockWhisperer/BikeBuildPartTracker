@@ -9,7 +9,9 @@ _HEADSET_SPACER_KIT_VARIANT_ID = 32835022389325
 
 class FullSpeedAheadSku(BaseSku):
     """A single sellable product from Full Speed Ahead."""
-    def __init__(self, product_slug: str, variant_id: int) -> None:
+    def __init__(self, product_type: str, product_slug: str, variant_id: int) -> None:
+            self.product_type = product_type
+            self.product_brand = "full_speed_ahead"
             self.product_slug = product_slug
             self.variant_id = variant_id
 
@@ -23,8 +25,9 @@ class FullSpeedAheadSku(BaseSku):
 
 
 class FullSpeedAheadSkus(FullSpeedAheadSku, Enum):
-    ENERGY_SUPER_COMPACT_HANDLEBAR = ("energy-super-compact-handlebar", _ENERGY_HANDLEBAR_38CM_VARIANT_ID)
-    OMEGA_STEM = ("omega-stem", _OMEGA_STEM_90MM_VARIANT_ID)
-    ENERGY_STEM = ("energy-stem", _ENERGY_STEM_90MM_VARIANT_ID)
-    HEADSET_SPACER_KIT = ("headset-spacer-kit-w-fsa-logo-assorted-sizes-1",
-                          _HEADSET_SPACER_KIT_VARIANT_ID)
+    ENERGY_SUPER_COMPACT_HANDLEBAR = ("handlebars", "energy-super-compact-handlebar",
+                                       _ENERGY_HANDLEBAR_38CM_VARIANT_ID)
+    OMEGA_STEM =                     ("stem", "omega-stem", _OMEGA_STEM_90MM_VARIANT_ID)
+    ENERGY_STEM =                    ("stem", "energy-stem", _ENERGY_STEM_90MM_VARIANT_ID)
+    HEADSET_SPACER_KIT =             ("heaset_spacers", "headset-spacer-kit-w-fsa-logo-assorted-sizes-1",
+                                      _HEADSET_SPACER_KIT_VARIANT_ID)

@@ -18,7 +18,6 @@ class RitcheyWebClient(HtmlWebClient):
 
         return {
             "product_id": ritchey_sku.product_slug,
-            "name": ritchey_sku.product_name,
             "date": date.today(),
             "msrp_price": msrp_price,
             "sale_price": sale_price,

@@ -37,7 +37,6 @@ class PaulCompWebClient(HtmlWebClient):
 
         return {
             "product_id": variant.get("sku", str(paul_comp_sku.variation_id)),
-            "name": paul_comp_sku.product_name,
             "date": date.today(),
             "msrp_price": msrp_price,
             "sale_price": sale_price,
