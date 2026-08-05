@@ -9,7 +9,7 @@ class WhiteIndustriesSku(BaseSku):
         self.product_type = "wheelset"
         self.product_brand = "white_industries"
         self.product_slug = product_slug
-        self.variant_id = None
+        self.variant_id = 8
 
     @property
     def url(self) -> str:

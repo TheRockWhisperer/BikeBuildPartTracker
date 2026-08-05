@@ -7,7 +7,7 @@ from Skus.WhiteIndustriesSku import WhiteIndustriesProductSkus
 from Skus.VittoriaSku import VittoriaProductSkus
 from Skus.FullSpeedAheadSku import FullSpeedAheadSkus
 from Skus.SupacazSku import SupacazSkus
-from Skus.MerlinCyclesSku import MerlinCyclesProductSku
+from Skus.MerlinCyclesSku import MerlinCyclesSkus
 from Skus.RitcheyLogicSku import RitcheyLogicSkus
 from Skus.SelleItaliaSku import SelleItaliaProductSkus
 from Skus.PaulComponentsSku import PaulCompProductSkus
@@ -38,7 +38,7 @@ product_sku_catalogs = [
     SelleItaliaProductSkus,
     SupacazSkus,
     VittoriaProductSkus,
-    MerlinCyclesProductSku,
+    MerlinCyclesSkus,
     ChrisKingProductSkus,
     PanaracerProductSkus,
     PDWProductSkus,
@@ -46,6 +46,9 @@ product_sku_catalogs = [
 ]
 
 if __name__ == "__main__":
+    # Bicycle Table Population
+    supabase.table("bicycles").insert(bicycle_rows).execute()
+    
     # Product Table Population
     product_rows = []
     for sku_catalog in product_sku_catalogs:
@@ -59,7 +62,3 @@ if __name__ == "__main__":
             }
             product_rows.append(row)
     supabase.table("products").insert(product_rows).execute()
-
-    # Bicycle Table Population
-    supabase.table("bicycles").insert(bicycle_rows).execute()
-    

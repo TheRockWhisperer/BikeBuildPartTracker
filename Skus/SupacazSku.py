@@ -9,7 +9,7 @@ class SupacazProductSku(BaseSku):
         self.product_type = "bar_tape"
         self.product_brand = "supacaz"
         self.product_slug = product_slug
-        self.variant_id = None
+        self.variant_id = 8
 
     @property
     def url(self) -> str:
