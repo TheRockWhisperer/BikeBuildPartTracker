@@ -27,7 +27,7 @@ from Skus.VelocityWheelsSku import VelocityProductSkus
 from supabase import Client, create_client
 import os
 
-RUN_LOCAL = True
+RUN_LOCAL = False
 if RUN_LOCAL:
     from dotenv import load_dotenv
     load_dotenv()
