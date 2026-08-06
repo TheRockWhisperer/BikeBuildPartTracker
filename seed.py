@@ -24,9 +24,18 @@ key = os.getenv("SUPABASE_SERVICE_KEY")
 supabase: Client = create_client(url, key)
 
 bicycle_rows = [
-    {"name": "endurance_road"},
-    {"name": "commuter_road"},
-    {"name": "commuter_touring"}
+    {
+        "name": "endurance_road",
+        "description": "My Sunday sports car of bikes. Used for endurance training and leisurely road rides."
+    },
+    {
+        "name": "commuter_road",
+        "description": "My bike for getting around town without needing to haul anything and social rides. It is speedy but not high-end that I'd worry about hitting a pothole."
+    },
+    {
+        "name": "commuter_touring",
+        "description": "My bike for hauling things, night rides, rain, and touring. The workhorse."
+    }
 ]
 
 product_sku_catalogs = [

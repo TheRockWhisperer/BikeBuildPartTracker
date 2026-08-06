@@ -13,10 +13,9 @@ class PanaracerSku(BaseSku):
     @property
     def url(self) -> str:
         return (
-            f"https://www.panaracerusa.com/products/"
-            f"condor-{self.product_slug}.json"
+            f"https://www.panaracerusa.com/products/{self.product_slug}.json"
         )
 
 
 class PanaracerProductSkus(PanaracerSku, Enum):
-    gravel_kings = ("gravelking-ss-2024-folding-gravel-tire", 44612765876459)
+    GRAVEL_KINGS = ("gravelking-ss-2024-folding-gravel-tire", 44612765876459)
