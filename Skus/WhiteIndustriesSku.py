@@ -5,11 +5,11 @@ from .BaseSku import BaseSku
 class WhiteIndustriesSku(BaseSku):
     """A single sellable product on whiteind.com."""
 
-    def __init__(self, product_slug: str) -> None:
+    def __init__(self, product_slug: str, variant_reference_name: str) -> None:
         self.product_type = "wheelset"
         self.product_brand = "white_industries"
         self.product_slug = product_slug
-        self.variant_id = 8
+        self.variant_reference_name = variant_reference_name
 
     @property
     def url(self) -> str:
@@ -21,4 +21,4 @@ class WhiteIndustriesSku(BaseSku):
 
 
 class WhiteIndustriesProductSkus(WhiteIndustriesSku, Enum):
-    CLD_ALUMINUM_700C_ROAD_WHEELS = "cld-aluminum-700c-road-wheels"
+    CLD_ALUMINUM_700C_ROAD_WHEELS = ("cld-aluminum-700c-road-wheels", "wi_cld_hubs")

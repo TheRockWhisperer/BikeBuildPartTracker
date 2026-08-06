@@ -15,6 +15,7 @@ from Skus.ChrisKingSku import ChrisKingProductSkus
 from Skus.PanaracerSku import PanaracerProductSkus
 from Skus.PDWSku import PDWProductSkus
 from Skus.VelocityWheelsSku import VelocityProductSkus
+from Skus.ReserveSku import ReserveProductSkus
 
 load_dotenv()
 
@@ -51,7 +52,8 @@ product_sku_catalogs = [
     ChrisKingProductSkus,
     PanaracerProductSkus,
     PDWProductSkus,
-    VelocityProductSkus
+    VelocityProductSkus,
+    ReserveProductSkus
 ]
 
 if __name__ == "__main__":
@@ -66,7 +68,7 @@ if __name__ == "__main__":
                 "product_type": product_sku.product_type,
                 "product_name_id": product_sku.product_slug,
                 "product_brand": product_sku.product_brand,
-                "variant": product_sku.variant_id,
+                "variant": product_sku.variant_reference_name,
                 "website": product_sku.url,
             }
             product_rows.append(row)

@@ -8,11 +8,12 @@ class RitcheySku(BaseSku):
     e.g. 'bike/frames/p-29er-frame' vs 'product/wcs-carbon-mountain-adventure-fork'),
     since Ritchey doesn't use one consistent prefix across product types.
     """
-    def __init__(self, product_slug: str, variant_id: int) -> None:
+    def __init__(self, product_slug: str, variant_reference_name: str, variant_id: int) -> None:
             self.product_type = "seatpost"
             self.product_brand = "ritchey_logic"
             self.product_slug = product_slug
             self.variant_id = variant_id
+            self.variant_reference_name = variant_reference_name
 
     @property
     def url(self) -> str:
@@ -28,4 +29,4 @@ class RitcheySku(BaseSku):
 
 
 class RitcheyLogicSkus(RitcheySku, Enum):
-    COMP_ZERO_SEATPOST = ('bike/seatposts/comp-zero-seatpost', 41035317055)
+    COMP_ZERO_SEATPOST = ('bike/seatposts/comp-zero-seatpost', "comp_zero_setback", 41035317055)

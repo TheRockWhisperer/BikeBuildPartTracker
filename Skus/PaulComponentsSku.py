@@ -2,11 +2,12 @@ from enum import Enum
 
 class PaulCompSku:
     """A single sellable variant on paulcomp.com."""
-    def __init__(self, product_slug: str, variant_id: int):
+    def __init__(self, product_slug: str, variant_reference_name: str, variant_id: int):
         self.product_type = "bar_end_plugs"
         self.product_brand = "paul_components"
         self.product_slug = product_slug
         self.variant_id = variant_id
+        self.variant_reference_name = variant_reference_name
 
     @property
     def url(self) -> str:
@@ -18,6 +19,6 @@ class PaulCompSku:
 
 
 class PaulCompProductSkus(PaulCompSku, Enum):
-    BAR_END_PLUGS_BLACK = ("bar-end-plugs", 61763)
-    BAR_END_PLUGS_SILVER = ("bar-end-plugs", 61764)
-    BAR_END_PLUGS_POLISHED = ("bar-end-plugs", 62532)
+    BAR_END_PLUGS_BLACK = ("bar-end-plugs", "black", 61763)
+    BAR_END_PLUGS_SILVER = ("bar-end-plugs", "silver", 61764)
+    BAR_END_PLUGS_POLISHED = ("bar-end-plugs", "polished", 62532)

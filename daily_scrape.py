@@ -23,6 +23,7 @@ from Skus.ChrisKingSku import ChrisKingProductSkus
 from Skus.PanaracerSku import PanaracerProductSkus
 from Skus.PDWSku import PDWProductSkus
 from Skus.VelocityWheelsSku import VelocityProductSkus
+from Skus.ReserveSku import ReserveProductSkus
 
 from supabase import Client, create_client
 import os
@@ -66,7 +67,8 @@ SCRAPE_JOBS = [
     (ShopifyWebClient(), PDWProductSkus.FULL_METAL_FENDERS, "PDW"),
     (ShopifyWebClient(), PDWProductSkus.TACO_BAR_TAPE, "PDW"),
     (ShopifyWebClient(), VelocityProductSkus.DRYAD_WHEELSET, "Velocity Wheels"),
-    
+    (ShopifyWebClient(), ReserveProductSkus.RESERVE_34_37_ENDURANCE, "Reserve Wheels"),
+    (ShopifyWebClient(), ReserveProductSkus.RESERVE_42_49_ENDURANCE, "Reserve Wheels"),
 ]
 
 
@@ -82,7 +84,7 @@ def run_scrape() -> dict:
                 "product_type": sku.product_type,
                 "product_brand": sku.product_brand,
                 "product_name": dto.product_id,
-                "variant": sku.variant_id,
+                "variant": sku.variant_reference_name,
                 "msrp_price": dto.msrp_price,
                 "sale_price": dto.sale_price
             }
