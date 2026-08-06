@@ -20,7 +20,7 @@ class CondorSku(BaseSku):
 
 
 class CondorProductSkus(CondorSku, Enum):
-    BLUE_CONDOR_FRAME = ("frame", "fratello-disc-thru-axle-frameset", "red", 49351522615617)
-    RED_CONDOR_FRAME  = ("frame", "fratello-disc-thru-axle-frameset", "blue", 55310658929024)
+    BLUE_CONDOR_FRAME = ("frame", "fratello-disc-thru-axle-frameset", "blue", 49351522615617)
+    RED_CONDOR_FRAME  = ("frame", "fratello-disc-thru-axle-frameset", "red", 55310658929024)
     TPU_TUBE_BUNDLE   = ("tube", "tpu-inner-tube-bundle", "tube_pack", 56942405157248)
     TPU_REPAIR_KIT    = ("tube", "tpu-inner-tube-patch-repair-kit", "patch_kit", 56434152472960)
