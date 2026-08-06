@@ -22,6 +22,9 @@ from Skus.PaulComponentsSku import PaulCompProductSkus
 
 from supabase import Client, create_client
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logging.basicConfig(
     level=logging.INFO,
