@@ -27,6 +27,7 @@ from Skus.ReserveSku import ReserveProductSkus
 
 from supabase import Client, create_client
 import os
+from datetime import datetime
 
 RUN_LOCAL = False
 if RUN_LOCAL:
@@ -93,6 +94,19 @@ def run_scrape() -> dict:
         except Exception as e:
             logger.error(f"Failed to fetch {label}: {e}")
             errors.append({"source": label, "error": str(e)})
+
+    # Adding the Siena frameset, they don't offer sales
+    dto_list.append(
+        {
+            "time": datetime.now(),
+            "product_type": "frame",
+            "product_brand": "officina_battaglin",
+            "product_name": "siena-frameset",
+            "variant": "regular_paint_finish",
+            "msrp_price": 2459,
+            "sale_price": None
+        }
+    )
 
     url = "https://mutrifzqzvsxxhgcyxrl.supabase.co"
     key = "sb_publishable_52B0sXyVjxvrPAw7OMkzoQ_ANruGm9E"
