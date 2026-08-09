@@ -36,4 +36,6 @@ class FullSpeedAheadSkus(FullSpeedAheadSku, Enum):
                                       "spacer_kit", _HEADSET_SPACER_KIT_VARIANT_ID)
     SMR_ACR_STEM =                   ("stem", "vision-smr-acr-stem",
                                       "siena_semi_integrated_stem", 32880202547277)
+    ACR_SPACER =                     ("integrated_headset_spacers", "acr-stem-spacer-1",
+                                      "acr_spacer", 46405144936638)
     

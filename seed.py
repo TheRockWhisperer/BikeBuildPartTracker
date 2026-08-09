@@ -53,7 +53,7 @@ product_sku_catalogs = [
     PanaracerProductSkus,
     PDWProductSkus,
     VelocityProductSkus,
-    ReserveProductSkus
+    ReserveProductSkus,
 ]
 
 if __name__ == "__main__":
@@ -72,4 +72,13 @@ if __name__ == "__main__":
                 "website": product_sku.url,
             }
             product_rows.append(row)
+    product_rows.append(
+        {
+            "product_type": "frame",
+            "product_name_id": "siena-frameset",
+            "product_brand": "officina_battaglin",
+            "variant": "regular_paint_finish",
+            "website": "https://officinabattaglin.com/products/road-endurance-bikes/siena/",
+        }
+    )
     supabase.table("products").insert(product_rows).execute()
