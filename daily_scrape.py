@@ -99,7 +99,7 @@ def run_scrape() -> dict:
     # Adding the Siena frameset, they don't offer sales
     dto_list.append(
         {
-            "time": datetime.now(),
+            "time": datetime.now().isoformat(),
             "product_type": "frame",
             "product_brand": "officina_battaglin",
             "product_name": "siena-frameset",
