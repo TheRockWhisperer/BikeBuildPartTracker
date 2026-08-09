@@ -54,6 +54,7 @@ SCRAPE_JOBS = [
     (ShopifyWebClient(), FullSpeedAheadSkus.ENERGY_STEM, "Full Speed Ahead"),
     (ShopifyWebClient(), FullSpeedAheadSkus.ENERGY_SUPER_COMPACT_HANDLEBAR, "Full Speed Ahead"),
     (ShopifyWebClient(), FullSpeedAheadSkus.HEADSET_SPACER_KIT, "Full Speed Ahead"),
+    (ShopifyWebClient(), FullSpeedAheadSkus.ACR_SPACER, "Full Speed Ahead"),
     (ShopifyWebClient(), FullSpeedAheadSkus.OMEGA_STEM, "Full Speed Ahead"),
     (ShopifyWebClient(), FullSpeedAheadSkus.SMR_ACR_STEM, "Full Speed Ahead"),
     (ShopifyWebClient(), PanaracerProductSkus.GRAVEL_KINGS, "Panaracer"),
@@ -99,7 +100,7 @@ def run_scrape() -> dict:
     # Adding the Siena frameset, they don't offer sales
     dto_list.append(
         {
-            "time": datetime.now().isoformat(),
+            "time": datetime.today().isoformat(),
             "product_type": "frame",
             "product_brand": "officina_battaglin",
             "product_name": "siena-frameset",
