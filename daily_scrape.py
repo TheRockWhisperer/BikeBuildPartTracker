@@ -55,6 +55,7 @@ SCRAPE_JOBS = [
     (ShopifyWebClient(), FullSpeedAheadSkus.ENERGY_SUPER_COMPACT_HANDLEBAR, "Full Speed Ahead"),
     (ShopifyWebClient(), FullSpeedAheadSkus.HEADSET_SPACER_KIT, "Full Speed Ahead"),
     (ShopifyWebClient(), FullSpeedAheadSkus.OMEGA_STEM, "Full Speed Ahead"),
+    (ShopifyWebClient(), FullSpeedAheadSkus.SMR_ACR_STEM, "Full Speed Ahead"),
     (ShopifyWebClient(), PanaracerProductSkus.GRAVEL_KINGS, "Panaracer"),
     (SupacazWebClient(), SupacazSkus.SSK_STAR_FADE_RED, "Supacaz"),
     (MerlinCyclesWebClient(), MerlinCyclesSkus.SHIMANO_105_MECHANICAL_GROUPSET, "Merlin Cycles"),

@@ -34,3 +34,6 @@ class FullSpeedAheadSkus(FullSpeedAheadSku, Enum):
                                       "lightweight_stem", _ENERGY_STEM_90MM_VARIANT_ID)
     HEADSET_SPACER_KIT =             ("heaset_spacers", "headset-spacer-kit-w-fsa-logo-assorted-sizes-1",
                                       "spacer_kit", _HEADSET_SPACER_KIT_VARIANT_ID)
+    SMR_ACR_STEM =                   ("stem", "vision-smr-acr-stem",
+                                      "siena_semi_integrated_stem", 32880202547277)
+    
