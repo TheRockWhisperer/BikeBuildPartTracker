@@ -16,6 +16,8 @@ from Skus.PanaracerSku import PanaracerProductSkus
 from Skus.PDWSku import PDWProductSkus
 from Skus.VelocityWheelsSku import VelocityProductSkus
 from Skus.ReserveSku import ReserveProductSkus
+from Skus.PerformanceBikesSku import PerformanceBikeBundles
+from Skus.CaneCreekSku import CaneCreekProductSkus
 
 load_dotenv()
 
@@ -54,6 +56,8 @@ product_sku_catalogs = [
     PDWProductSkus,
     VelocityProductSkus,
     ReserveProductSkus,
+    PerformanceBikeBundles,
+    CaneCreekProductSkus,
 ]
 
 if __name__ == "__main__":

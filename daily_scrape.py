@@ -9,6 +9,7 @@ from Clients.MerlinCycles import MerlinCyclesWebClient
 from Clients.RitcheyLogicWebClient import RitcheyWebClient
 from Clients.SelleItaliaWebClient import SelleItaliaWebClient
 from Clients.PaulComponentsWebClient import PaulCompWebClient
+from Clients.PerformanceBikes import PerformanceBikeWebClient
 
 from Skus.CondorSku import CondorProductSkus
 from Skus.WhiteIndustriesSku import WhiteIndustriesProductSkus
@@ -24,6 +25,8 @@ from Skus.PanaracerSku import PanaracerProductSkus
 from Skus.PDWSku import PDWProductSkus
 from Skus.VelocityWheelsSku import VelocityProductSkus
 from Skus.ReserveSku import ReserveProductSkus
+from Skus.PerformanceBikesSku import PerformanceBikeBundles
+from Skus.CaneCreekSku import CaneCreekProductSkus
 
 from supabase import Client, create_client
 import os
@@ -43,6 +46,7 @@ logger = logging.getLogger(__name__)
 
 # (client, sku, label) — label is just for logging
 SCRAPE_JOBS = [
+    (PerformanceBikeWebClient(), PerformanceBikeBundles.SRAM_FORCE_XPLR_COMPLETE_GROUPSET, "Performance Bike"),
     (ShopifyWebClient(), CondorProductSkus.BLUE_CONDOR_FRAME, "Condor"),
     (ShopifyWebClient(), CondorProductSkus.RED_CONDOR_FRAME, "Condor"),
     (ShopifyWebClient(), CondorProductSkus.TPU_REPAIR_KIT, "Condor"),
@@ -72,6 +76,8 @@ SCRAPE_JOBS = [
     (ShopifyWebClient(), VelocityProductSkus.DRYAD_WHEELSET, "Velocity Wheels"),
     (ShopifyWebClient(), ReserveProductSkus.RESERVE_34_37_ENDURANCE, "Reserve Wheels"),
     (ShopifyWebClient(), ReserveProductSkus.RESERVE_42_49_ENDURANCE, "Reserve Wheels"),
+    (ShopifyWebClient(), CaneCreekProductSkus.HCR_HEADSET, "Cane Creek"),
+    (ShopifyWebClient(), CaneCreekProductSkus.HCR_STEM, "Cane Creek"),
 ]
 
 
